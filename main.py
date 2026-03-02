@@ -25,6 +25,8 @@ class Animal:
     OWNER_HAPPINESS = -10
     DEFAULT = 0
 
+    PARAM_MAX = 100
+    PARAM_MIN = 0
     choices = (
         "Choose one of the following options:"
         "\n~\teat"
@@ -50,8 +52,9 @@ class Animal:
 
     def eat(self) -> None:
         """update animal values if it eats"""
-        params_values = {"energy": self.EAT_ENERGY, "hunger": self.EAT_HUNGER, "happiness": self.DEFAULT}
-        if self.update_values_if_right(params_values):
+        self.energy = self.EAT_ENERGY
+        self.hunger = self.EAT_HUNGER
+        if self.keep_params_in_range():
             self.default_actions("eat")
 
     def play(self) -> None:
@@ -59,14 +62,14 @@ class Animal:
         self.energy[0] = self.PLAY_ENERGY
         self.hunger[0] = self.PLAY_HUNGER
         self.happiness[0] = self.PLAY_HAPPINESS
-        if self.update_values_if_right():
+        if self.keep_params_in_range():
             self.default_actions("play")
 
     def sleep(self) -> None:
         """update animal values if it sleeps"""
         self.energy[0] = self.SLEEP_ENERGY
         self.hunger[0] = self.SLEEP_HUNGER
-        if self.update_values_if_right():
+        if self.keep_params_in_range():
             self.default_actions("sleep")
 
     def bite_someone(self) -> None:
@@ -79,8 +82,8 @@ class Animal:
         while not owner.isalpha():
             owner = input("Please enter the name of the new owner: ")
         self.owner = owner
-        params_values = {"energy": self.DEFAULT, "hunger": self.DEFAULT, "happiness": -10}
-        if self.update_values_if_right(params_values):
+        self.happiness[0] = self.OWNER_HAPPINESS
+        if self.keep_params_in_range():
             self.default_actions("change_owner")
 
     def default_actions(self, source_action) -> None:
@@ -113,14 +116,14 @@ class Animal:
         self.logger.setLevel(logging.DEBUG)
         self.logger.info(("~" * 5) + "New Run" + ("~" * 5))
 
-    def update_values_if_right(self) -> None:
+    def keep_params_in_range(self) -> None:
         """make sure the values are between 0-100"""
         params = [self.energy, self.hunger, self.happiness]
         for i in range(len(params)):
-            if params[i][0] > 100:
-                params[i][0] = 100
-            elif params[i][0] < 0:
-                params[i][0] = 0
+            if params[i][0] > self.PARAM_MAX:
+                params[i][0] = self.PARAM_MAX
+            elif params[i][0] < self.PARAM_MIN:
+                params[i][0] = self.PARAM_MIN
 
     def exit_loop(self) -> bool:
         """return false to exit the loop"""
