@@ -1,18 +1,29 @@
 from enum import Enum
-from typing import List, Any
+from typing import Any
+import logging
 import typer
 
 
 class AnimalsTypes(str, Enum):
     """define all the animal possible types"""
 
-    dog = "dog"
-    cat = "cat"
-    horse = "horse"
+    DOG = "dog"
+    CAT = "cat"
+    HORSE = "horse"
 
 
 class Animal:
     """define an animal and its actions"""
+
+    EAT_ENERGY = 10
+    EAT_HUNGER = -10
+    PLAY_ENERGY = -20
+    PLAY_HUNGER = 10
+    PLAY_HAPPINESS = 25
+    SLEEP_ENERGY = 10
+    SLEEP_HUNGER = 5
+    OWNER_HAPPINESS = -10
+    DEFAULT = 0
 
     choices = (
         "Choose one of the following options:"
@@ -30,28 +41,32 @@ class Animal:
         self.kind = kind
         self.name = name
         self.owner = owner
-        self.hunger = 0
-        self.happiness = 0
-        self.energy = 0
+        self.hunger = [0]
+        self.happiness = [0]
+        self.energy = [0]
         self.points = 0
-        self.history: List[str] = []
+        self.history_path = "history.txt"
+        self.logger: Any = None
 
     def eat(self) -> None:
         """update animal values if it eats"""
-        params_values = {"energy": 10, "hunger": -10, "happiness": 0}
+        params_values = {"energy": self.EAT_ENERGY, "hunger": self.EAT_HUNGER, "happiness": self.DEFAULT}
         if self.update_values_if_right(params_values):
             self.default_actions("eat")
 
     def play(self) -> None:
         """update animal values if it plays"""
-        params_values = {"energy": -20, "hunger": 10, "happiness": 25}
-        if self.update_values_if_right(params_values):
+        self.energy[0] = self.PLAY_ENERGY
+        self.hunger[0] = self.PLAY_HUNGER
+        self.happiness[0] = self.PLAY_HAPPINESS
+        if self.update_values_if_right():
             self.default_actions("play")
 
     def sleep(self) -> None:
         """update animal values if it sleeps"""
-        params_values = {"energy": 10, "hunger": 5, "happiness": 0}
-        if self.update_values_if_right(params_values):
+        self.energy[0] = self.SLEEP_ENERGY
+        self.hunger[0] = self.SLEEP_HUNGER
+        if self.update_values_if_right():
             self.default_actions("sleep")
 
     def bite_someone(self) -> None:
@@ -64,7 +79,7 @@ class Animal:
         while not owner.isalpha():
             owner = input("Please enter the name of the new owner: ")
         self.owner = owner
-        params_values = {"energy": 0, "hunger": 0, "happiness": -10}
+        params_values = {"energy": self.DEFAULT, "hunger": self.DEFAULT, "happiness": -10}
         if self.update_values_if_right(params_values):
             self.default_actions("change_owner")
 
@@ -80,28 +95,32 @@ class Animal:
                 "msg": f"{self.name}'s owner changed",
             },
         }
-        points_amount: Any = actions_values[source_action]["points"]
-        self.points += points_amount
-        if self.points < 0:
-            self.points = 0
-        text: Any = actions_values[source_action]["msg"]
-        self.history.append(text)
-        print("~~~" + text + "~~~")
+        if source_action in actions_values:
+            self.points += actions_values[source_action]["points"]
+            if self.points < 0:
+                self.points = 0
+            text = actions_values[source_action]["msg"]
+            self.logger.info(text)
+            print("~~~" + text + "~~~")
+        else:
+            print("There isn't such an action")
 
-    def update_values_if_right(self, params_values) -> bool:
+    def append_history(self):
+        logging.basicConfig(filename=self.history_path,
+                            format='%(asctime)s %(levelname)s: %(message)s',
+                            filemode='a')
+        self.logger = logging.getLogger()
+        self.logger.setLevel(logging.DEBUG)
+        self.logger.info(("~" * 5) + "New Run" + ("~" * 5))
+
+    def update_values_if_right(self) -> None:
         """make sure the values are between 0-100"""
-        energy = params_values["energy"] + self.energy
-        hunger = params_values["hunger"] + self.hunger
-        happiness = params_values["happiness"] + self.happiness
-        params = [energy, hunger, happiness]
-        for value in params:
-            if value > 100 or value < 0:
-                print("Can't do this action...  :(")
-                return False
-        self.energy = energy
-        self.hunger = hunger
-        self.happiness = happiness
-        return True
+        params = [self.energy, self.hunger, self.happiness]
+        for i in range(len(params)):
+            if params[i][0] > 100:
+                params[i][0] = 100
+            elif params[i][0] < 0:
+                params[i][0] = 0
 
     def exit_loop(self) -> bool:
         """return false to exit the loop"""
@@ -114,7 +133,6 @@ class Animal:
             f"\n\thappiness: {self.happiness}"
             f"\n\thunger: {self.hunger}"
             f"\n\tenergy: {self.energy}"
-            f"\n\thistory: {self.history}"
         )
 
     def get_user_choice(self) -> str:
@@ -155,6 +173,7 @@ def main(animal_type: AnimalsTypes, animal_name: str):
     """create and define a new animal"""
     print(f"Hello {animal_type} {animal_name}")
     my_animal = Animal(animal_type, animal_name)
+    my_animal.append_history()
     my_animal.choose_actions()
 
 
