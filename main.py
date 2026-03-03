@@ -1,7 +1,19 @@
 from enum import Enum
+
 from typing import Any
 import logging
 import typer
+
+
+class NameConfirm():
+    def __init__(self, value):
+        self.value = value
+
+    def __enter__(self):
+        if len(self.value) > 0:
+            if self.value.isalpha() and self.value.islower():
+                raise "Name should contains only lowercase"
+        return self.value
 
 
 class AnimalsTypes(str, Enum):
@@ -80,7 +92,7 @@ class Animal:
         right_input = False
         owner = self.owner
         while not right_input:
-            owner = typer.prompt("Please enter the name of the new owner (only lowercase): ", type=str)
+            owner = typer.prompt("Please enter the name of the new owner (only lowercase)", type=str)
             if len(owner) > 0:
                 if owner.isalpha() and owner.islower():
                     right_input = True
@@ -179,7 +191,7 @@ class Animal:
         return sum(params) / len(params)
 
 
-def main(animal_type: AnimalsTypes, animal_name: str):
+def main(animal_type: AnimalsTypes, animal_name: NameConfirm):
     """create and define a new animal"""
     print(f"Hello {animal_type} {animal_name}")
     my_animal = Animal(animal_type, animal_name)
@@ -188,4 +200,7 @@ def main(animal_type: AnimalsTypes, animal_name: str):
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    enum_member = False
+    while not enum_member:
+
+        typer.run(main)
