@@ -52,8 +52,8 @@ class Animal:
 
     def eat(self) -> None:
         """update animal values if it eats"""
-        self.energy = self.EAT_ENERGY
-        self.hunger = self.EAT_HUNGER
+        self.energy[0] = self.EAT_ENERGY
+        self.hunger[0] = self.EAT_HUNGER
         if self.keep_params_in_range():
             self.default_actions("eat")
 
@@ -76,12 +76,19 @@ class Animal:
         """delete points to the animal if it bites"""
         self.default_actions("bite_someone")
 
+    def get_owner_name(self):
+        right_input = False
+        owner = self.owner
+        while not right_input:
+            owner = typer.prompt("Please enter the name of the new owner (only lowercase): ", type=str)
+            if len(owner) > 0:
+                if owner.isalpha() and owner.islower():
+                    right_input = True
+        return owner
+
     def change_owner(self) -> None:
         """change the owner of the animal"""
-        owner = self.owner
-        while not owner.isalpha():
-            owner = input("Please enter the name of the new owner: ")
-        self.owner = owner
+        self.owner = self.get_owner_name()
         self.happiness[0] = self.OWNER_HAPPINESS
         if self.keep_params_in_range():
             self.default_actions("change_owner")
