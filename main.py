@@ -53,35 +53,37 @@ class Animal:
 
     def eat(self) -> None:
         """update animal values if it eats"""
-        self.energy[0] = self.EAT_ENERGY
-        self.hunger[0] = self.EAT_HUNGER
-        if self.keep_params_in_range():
-            self.default_actions("eat")
+        self.energy[0] += self.EAT_ENERGY
+        self.hunger[0] += self.EAT_HUNGER
+        self.keep_params_in_range()
+        self.default_actions("eat")
 
     def play(self) -> None:
         """update animal values if it plays"""
-        self.energy[0] = self.PLAY_ENERGY
-        self.hunger[0] = self.PLAY_HUNGER
-        self.happiness[0] = self.PLAY_HAPPINESS
-        if self.keep_params_in_range():
-            self.default_actions("play")
+        self.energy[0] += self.PLAY_ENERGY
+        self.hunger[0] += self.PLAY_HUNGER
+        self.happiness[0] += self.PLAY_HAPPINESS
+        self.keep_params_in_range()
+        self.default_actions("play")
 
     def sleep(self) -> None:
         """update animal values if it sleeps"""
-        self.energy[0] = self.SLEEP_ENERGY
-        self.hunger[0] = self.SLEEP_HUNGER
-        if self.keep_params_in_range():
-            self.default_actions("sleep")
+        self.energy[0] += self.SLEEP_ENERGY
+        self.hunger[0] += self.SLEEP_HUNGER
+        self.keep_params_in_range()
+        self.default_actions("sleep")
 
     def bite_someone(self) -> None:
         """delete points to the animal if it bites"""
-        self.default_actions("bite_someone")
+        self.default_actions("bite")
 
     def get_owner_name(self):
         right_input = False
         owner = self.owner
         while not right_input:
-            owner = typer.prompt("Please enter the name of the new owner (only lowercase)", type=str)
+            owner = typer.prompt(
+                "Enter the name of the new owner (only lowercase)", type=str
+            )
             if len(owner) > 0:
                 if owner.isalpha() and owner.islower():
                     right_input = True
@@ -91,19 +93,19 @@ class Animal:
         """change the owner of the animal"""
         self.owner = self.get_owner_name()
         self.happiness[0] = self.OWNER_HAPPINESS
-        if self.keep_params_in_range():
-            self.default_actions("change_owner")
+        self.keep_params_in_range()
+        self.default_actions("change_owner")
 
     def default_actions(self, source_action) -> None:
         """do the default actions with specific values per actions"""
         actions_values = {
-            "eat": {"points": 5, "msg": f"{self.name} eats"},
-            "play": {"points": 10, "msg": f"{self.name} plays"},
-            "sleep": {"points": 7, "msg": f"{self.name} sleeps"},
-            "bite_someone": {"points": -11, "msg": f"{self.name} bites"},
+            "eat": {"points": 5, "msg": f"{self.kind} {self.name} eats"},
+            "play": {"points": 10, "msg": f"{self.kind} {self.name} plays"},
+            "sleep": {"points": 7, "msg": f"{self.kind} {self.name} sleeps"},
+            "bite": {"points": -11, "msg": f"{self.kind} {self.name} bites"},
             "change_owner": {
                 "points": -5,
-                "msg": f"{self.name}'s owner changed",
+                "msg": f"{self.kind} {self.name}'s owner changed",
             },
         }
         if source_action in actions_values:
@@ -117,9 +119,11 @@ class Animal:
             print("There isn't such an action")
 
     def append_history(self):
-        logging.basicConfig(filename=self.history_path,
-                            format='%(asctime)s %(levelname)s: %(message)s',
-                            filemode='a')
+        logging.basicConfig(
+            filename=self.history_path,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            filemode="a",
+        )
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
         self.logger.info(("~" * 5) + "New Run" + ("~" * 5))
@@ -176,7 +180,7 @@ class Animal:
 
     def final_calculate(self) -> float:
         """calculate the average of all the parameters of the animal"""
-        params = [self.happiness, self.energy, self.hunger]
+        params = [self.happiness[0], self.energy[0], self.hunger[0]]
         return sum(params) / len(params)
 
 
