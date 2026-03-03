@@ -5,17 +5,6 @@ import logging
 import typer
 
 
-class NameConfirm():
-    def __init__(self, value):
-        self.value = value
-
-    def __enter__(self):
-        if len(self.value) > 0:
-            if self.value.isalpha() and self.value.islower():
-                raise "Name should contains only lowercase"
-        return self.value
-
-
 class AnimalsTypes(str, Enum):
     """define all the animal possible types"""
 
@@ -191,8 +180,16 @@ class Animal:
         return sum(params) / len(params)
 
 
-def main(animal_type: AnimalsTypes, animal_name: NameConfirm):
+def name_confirm(value):
+    if len(value) > 0:
+        if value.isalpha() and value.islower():
+            return value
+    raise Exception("Name should contains only lowercase")
+
+
+def main(animal_type: AnimalsTypes, animal_name: str):
     """create and define a new animal"""
+    name_confirm(animal_name)
     print(f"Hello {animal_type} {animal_name}")
     my_animal = Animal(animal_type, animal_name)
     my_animal.append_history()
@@ -200,7 +197,4 @@ def main(animal_type: AnimalsTypes, animal_name: NameConfirm):
 
 
 if __name__ == "__main__":
-    enum_member = False
-    while not enum_member:
-
-        typer.run(main)
+    typer.run(main)
