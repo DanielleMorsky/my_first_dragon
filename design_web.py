@@ -25,6 +25,21 @@ def home_screen():
     return full_html(text)
 
 
-def new_animal():
-    text = main
+def new_animal(animal_kind, animal_name):
+    try:
+        animal = main.create_animal(animal_kind, animal_name)
+        return animal
+        # call this function from the one that contains the whole page of bottoms
+    except Exception:
+        text = "<h1 style='text-align:center'>wrong parameters</h1>"
+        return full_html(text)
+
+
+def show_bottoms(animal_kind, animal_name):
+    animal = new_animal(animal_kind, animal_name)
+    if type(animal) == str:
+        return animal
+    text = f"""
+    <a href="http://127.0.0.1:8000/eat?animal={animal}">Set bottom position to 100 px</a>
+    """
     return full_html(text)

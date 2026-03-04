@@ -1,16 +1,16 @@
 from enum import Enum
 
-from typing import Any
+from typing import Any, List
 import logging
 import typer
 
-
-class AnimalsTypes(str, Enum):
-    """define all the animal possible types"""
-
-    DOG = "dog"
-    CAT = "cat"
-    HORSE = "horse"
+ANIMAL_TYPES = ["dog", "cat", "horse"]
+# class AnimalsTypes(str, Enum):
+#     """define all the animal possible types"""
+#
+#     DOG = "dog"
+#     CAT = "cat"
+#     HORSE = "horse"
 
 
 class Animal:
@@ -141,14 +141,9 @@ class Animal:
         """return false to exit the loop"""
         return False
 
-    def print_params(self) -> None:
+    def print_params(self) -> List[str]:
         """print the parameters of the animal"""
-        print(
-            "Current status: "
-            f"\n\thappiness: {self.happiness}"
-            f"\n\thunger: {self.hunger}"
-            f"\n\tenergy: {self.energy}"
-        )
+        return [f"\n\thappiness: {self.happiness[0]}", f"\n\thunger: {self.hunger[0]}", f"\n\tenergy: {self.energy[0]}"]
 
     def get_user_choice(self) -> str:
         """check that the user entered an action from the options"""
@@ -158,11 +153,11 @@ class Animal:
             user_choice = typer.prompt(self.choices, type=str)
         return user_choice
 
-    def choose_actions(self) -> None:
+    def choose_actions(self, user_choice) -> List[str]:
         """keep allow choosing action until exit, also if input is wrong"""
         keep_choose = True
         while keep_choose:
-            user_choice = self.get_user_choice()
+            # user_choice = self.get_user_choice()
             choice_to_action = {
                 "eat": self.eat,
                 "play": self.play,
@@ -176,7 +171,7 @@ class Animal:
                 print("goodbye :)")
             else:
                 choice_to_action[user_choice]()
-            self.print_params()
+            return self.print_params()
 
     def final_calculate(self) -> float:
         """calculate the average of all the parameters of the animal"""
@@ -191,14 +186,20 @@ def name_confirm(value):
     raise Exception("Name should contains only lowercase")
 
 
-def main(animal_type: AnimalsTypes, animal_name: str):
+def kind_confirm(kind):
+    if kind in ANIMAL_TYPES:
+        return kind
+    raise Exception("The type of the animal is wrong")
+
+
+def create_animal(animal_type: str, animal_name: str):
     """create and define a new animal"""
     name_confirm(animal_name)
-    print(f"Hello {animal_type} {animal_name}")
+    kind_confirm(animal_type)
     my_animal = Animal(animal_type, animal_name)
     my_animal.append_history()
-    my_animal.choose_actions()
-
+    return my_animal
 
 if __name__ == "__main__":
-    typer.run(main)
+    create_animal("cat", "da")
+
