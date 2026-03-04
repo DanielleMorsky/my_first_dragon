@@ -9,6 +9,6 @@ def read_root():
     return HTMLResponse(content=design_web.home_screen(), status_code=200)
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/status")
+def read_item():
+    return HTMLResponse(content=design_web.new_animal(), status_code=200)

@@ -1,4 +1,5 @@
 import html
+import main
 
 
 def full_html(specific_site_content):
@@ -19,7 +20,11 @@ def home_screen():
     text = """
     <h2 style='text-align:center'>Welcome to animal viewing :)</h2>
     <br>
-    <h3 style='text-align:center'>press here to get to status page</h3>
+    <a href="http://127.0.0.1:8000/status"><h3 style='text-align:center'>press here to get to status page</h3></a>
     """
-    # <a href="url">link text</a>
+    return full_html(text)
+
+
+def new_animal():
+    text = main
     return full_html(text)
