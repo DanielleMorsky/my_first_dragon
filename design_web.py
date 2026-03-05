@@ -1,5 +1,5 @@
 import html
-import main
+import animal_function
 
 
 def full_html(specific_site_content):
@@ -27,7 +27,7 @@ def home_screen():
 
 def new_animal(animal_kind, animal_name):
     try:
-        animal = main.create_animal(animal_kind, animal_name)
+        animal = animal_function.create_animal(animal_kind, animal_name)
         return animal
         # call this function from the one that contains the whole page of bottoms
     except Exception:
@@ -40,6 +40,7 @@ def show_bottoms(animal_kind, animal_name):
     if type(animal) == str:
         return animal
     text = f"""
-    <a href="http://127.0.0.1:8000/eat?animal={animal}">Set bottom position to 100 px</a>
+    <button onlink={animal_function.Animal.choose_actions(animal, "eat")}">Set bottom position to 100 px</a>
     """
-    return full_html(text)
+    text = f"{id(animal)}"
+    return text
