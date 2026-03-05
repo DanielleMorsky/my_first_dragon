@@ -1,6 +1,6 @@
 from enum import Enum
-
-from typing import Any, List
+import ctypes
+from typing import Any, List, Dict
 import logging
 import typer
 
@@ -141,9 +141,9 @@ class Animal:
         """return false to exit the loop"""
         return False
 
-    def print_params(self) -> List[str]:
+    def print_params(self) -> Dict:
         """print the parameters of the animal"""
-        return [f"\n\thappiness: {self.happiness[0]}", f"\n\thunger: {self.hunger[0]}", f"\n\tenergy: {self.energy[0]}"]
+        return {"happiness": self.happiness[0], "hunger": self.hunger[0], "energy": self.energy[0]}
 
     def get_user_choice(self) -> str:
         """check that the user entered an action from the options"""
@@ -185,7 +185,8 @@ def name_confirm(value):
             return value
     raise Exception("Name should contains only lowercase")
 
-
+def get_object(object_id):
+    return ctypes.cast(object_id, ctypes.py_object).value
 def kind_confirm(kind):
     if kind in ANIMAL_TYPES:
         return kind
