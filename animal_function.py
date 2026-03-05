@@ -49,6 +49,7 @@ class Animal:
         self.energy = [0]
         self.points = 0
         self.history_path = "history.txt"
+        self.last_action = ""
         self.logger: Any = None
 
     def eat(self) -> None:
@@ -115,6 +116,7 @@ class Animal:
             text = actions_values[source_action]["msg"]
             self.logger.info(text)
             print("~~~" + text + "~~~")
+            self.last_action = source_action
         else:
             print("There isn't such an action")
 
@@ -143,7 +145,11 @@ class Animal:
 
     def print_params(self) -> Dict:
         """print the parameters of the animal"""
-        return {"happiness": self.happiness[0], "hunger": self.hunger[0], "energy": self.energy[0]}
+        return {"happiness": self.happiness[0],
+                "hunger": self.hunger[0],
+                "energy": self.energy[0],
+                "last_action": self.last_action,
+                "animal_stat": self.final_calculate()}
 
     def get_user_choice(self) -> str:
         """check that the user entered an action from the options"""
@@ -153,7 +159,7 @@ class Animal:
             user_choice = typer.prompt(self.choices, type=str)
         return user_choice
 
-    def choose_actions(self, user_choice) -> List[str]:
+    def choose_actions(self, user_choice) -> Dict:
         """keep allow choosing action until exit, also if input is wrong"""
         keep_choose = True
         while keep_choose:
@@ -185,8 +191,11 @@ def name_confirm(value):
             return value
     raise Exception("Name should contains only lowercase")
 
+
 def get_object(object_id):
     return ctypes.cast(object_id, ctypes.py_object).value
+
+
 def kind_confirm(kind):
     if kind in ANIMAL_TYPES:
         return kind
@@ -200,6 +209,7 @@ def create_animal(animal_type: str, animal_name: str):
     my_animal = Animal(animal_type, animal_name)
     my_animal.append_history()
     return my_animal
+
 
 if __name__ == "__main__":
     create_animal("cat", "da")

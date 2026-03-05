@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, status
+from fastapi.responses import HTMLResponse, RedirectResponse
 import ctypes
 
 import animal_function
@@ -17,12 +17,7 @@ def get_buttons_screen(animal_kind, animal_name):
     return HTMLResponse(content=my_web.show_bottoms(animal_kind, animal_name), status_code=200)
 
 @app.get("/{action}")
-def update_action(action, animal_description):
-    return HTMLResponse(content=my_web.do_action(action, animal_description), status_code=200)
-#     animal_object = ctypes.cast( ctypes.py_object).value
-#     print(animal_object)
-#     return str(animal_object) + action
-#     #main.Animal.choose_actions(animal_object, action)
+def update_action(action, animal_kind, animal_name):
+    my_web.do_action(action, animal_kind, animal_name)
+    return RedirectResponse(f"http://127.0.0.1:8000/status/{animal_kind}/{animal_name}", status_code=status.HTTP_303_SEE_OTHER)
 
-    # animal == self(the object)
-    # TODO understand how to convert the object to string for the url and then back to the same object (read about pickle)

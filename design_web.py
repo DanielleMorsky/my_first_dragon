@@ -25,7 +25,19 @@ class WebAnimal:
         text = """
         <h2 style='text-align:center'>Welcome to animal viewing :)</h2>
         <br>
-        <a href="http://127.0.0.1:8000/status"><h3 style='text-align:center'>press here to get to status page</h3></a>
+        Animal Kind: <input type="text" id="kind_text" value="">
+        Animal Name: <input type="text" id="name_text" value="">
+        <button onclick="myFunction()">create link</button>
+        <h3 style='text-align:center'><a id="aLink"></a></h3>
+        <script>
+        function myFunction() {
+          var kind = document.getElementById("kind_text").value;
+          var name = document.getElementById("name_text").value;
+          let link = document.getElementById('aLink');
+          link.href = "http://127.0.0.1:8000/status/" + kind + "/" + name;
+          link.innerText = 'Press here to get to the animal status page';
+        }
+        </script>
         """
         return self.full_html(text)
 
@@ -46,19 +58,24 @@ class WebAnimal:
         animal_text = self.new_animal(animal_kind, animal_name)
         if "Error" in animal_text:
             return self.full_html(animal_text)
+        animal_obj = self.animal_objects[animal_kind + "_" + animal_name]
         text = f"""
-        <a href="http://127.0.0.1:8000/eat?animal_description={animal_kind + "_" + animal_name}"><button>make the animal eat</button></a>
-        <button onlink='window.location.href="http://127.0.0.1:8000/sleep"'>make the animal sleep</button>
-        <button onlink='window.location.href="http://127.0.0.1:8000/play"'>make the animal play</button>
-        
-        <h1>{animal_function.Animal.print_params(self.animal_objects[animal_kind + "_" + animal_name])}</h1>
+        <a href="http://127.0.0.1:8000/eat?animal_kind={animal_kind}&animal_name={animal_name}"><button>make the animal eat</button></a>
+        <a href="http://127.0.0.1:8000/sleep?animal_kind={animal_kind}&animal_name={animal_name}"><button>make the animal sleep</button></a>
+        <a href="http://127.0.0.1:8000/play?animal_kind={animal_kind}&animal_name={animal_name}"><button>make the animal play</button></a>
+        <h1 style='text-align:center'>Basic Parameters</h1>
+        <h2 style='text-align:center'>Happiness -- {animal_function.Animal.print_params(animal_obj)["happiness"]}</h2>
+        <h2 style='text-align:center'>Hunger -- {animal_function.Animal.print_params(animal_obj)["hunger"]}</h2>
+        <h2 style='text-align:center'>Energy -- {animal_function.Animal.print_params(animal_obj)["energy"]}</h2>
+        <br>
+        <h1 style='text-align:center'>More Parameters</h1>
+        <h2 style='text-align:center'>Last Action -- {animal_function.Animal.print_params(animal_obj)["last_action"]}</h2>
+        <h2 style='text-align:center'>Animal Status -- {animal_function.Animal.print_params(animal_obj)["animal_stat"]}</h2>
+        <br>
+        <h3 style='text-align:center'><a href="http://127.0.0.1:8000/">Press here to get to the animal status page</a></h3>
         """
-        print(animal_function.Animal.print_params(self.animal_objects[animal_kind + "_" + animal_name]))
-        # text = f"{id(animal)}"
         return animal_text + "\n" + text
 
-    def do_action(self, action, animal_description):
-        animal_obj = self.animal_objects[animal_description]
+    def do_action(self, action, animal_kind, animal_name):
+        animal_obj = self.animal_objects[animal_kind + "_" + animal_name]
         animal_function.Animal.choose_actions(animal_obj, action)
-        # TODO redirect instead of return
-        return self.full_html(f"{animal_function.Animal.print_params(animal_obj)}")
