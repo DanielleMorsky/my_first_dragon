@@ -1,16 +1,9 @@
-from enum import Enum
 import ctypes
-from typing import Any, List, Dict
+from typing import Any, Dict, Union
 import logging
 import typer
 
 ANIMAL_TYPES = ["dog", "cat", "horse"]
-# class AnimalsTypes(str, Enum):
-#     """define all the animal possible types"""
-#
-#     DOG = "dog"
-#     CAT = "cat"
-#     HORSE = "horse"
 
 
 class Animal:
@@ -78,24 +71,20 @@ class Animal:
         """delete points to the animal if it bites"""
         self.default_actions("bite")
 
-    def get_owner_name(self):
-        right_input = False
-        owner = self.owner
-        while not right_input:
-            owner = typer.prompt(
-                "Enter the name of the new owner (only lowercase)", type=str
-            )
-            if len(owner) > 0:
-                if owner.isalpha() and owner.islower():
-                    right_input = True
-        return owner
+    def check_owner_name(self, owner):
+        """check if the owner name is ok"""
+        if len(owner) > 0:
+            if owner.isalpha() and owner.islower():
+                return True
+        return False
 
-    def change_owner(self) -> None:
+    def change_owner(self, owner) -> None:
         """change the owner of the animal"""
-        self.owner = self.get_owner_name()
-        self.happiness[0] = self.OWNER_HAPPINESS
-        self.keep_params_in_range()
-        self.default_actions("change_owner")
+        if self.check_owner_name(owner):
+            self.owner = owner
+            self.happiness[0] = self.OWNER_HAPPINESS
+            self.keep_params_in_range()
+            self.default_actions("change_owner")
 
     def default_actions(self, source_action) -> None:
         """do the default actions with specific values per actions"""
@@ -115,12 +104,10 @@ class Animal:
                 self.points = 0
             text = actions_values[source_action]["msg"]
             self.logger.info(text)
-            print("~~~" + text + "~~~")
             self.last_action = source_action
-        else:
-            print("There isn't such an action")
 
     def append_history(self):
+        """create a logger that use for update history file"""
         logging.basicConfig(
             filename=self.history_path,
             format="%(asctime)s %(levelname)s: %(message)s",
@@ -128,7 +115,6 @@ class Animal:
         )
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
-        self.logger.info(("~" * 5) + "New Run" + ("~" * 5))
 
     def keep_params_in_range(self) -> None:
         """make sure the values are between 0-100"""
@@ -145,11 +131,15 @@ class Animal:
 
     def print_params(self) -> Dict:
         """print the parameters of the animal"""
-        return {"happiness": self.happiness[0],
-                "hunger": self.hunger[0],
-                "energy": self.energy[0],
-                "last_action": self.last_action,
-                "animal_stat": self.final_calculate()}
+        return {
+            "happiness": self.happiness[0],
+            "hunger": self.hunger[0],
+            "energy": self.energy[0],
+            "last_action": self.last_action,
+            "animal_stat": self.final_calculate(),
+            "total_points": self.points,
+            "owner": self.owner,
+        }
 
     def get_user_choice(self) -> str:
         """check that the user entered an action from the options"""
@@ -159,25 +149,24 @@ class Animal:
             user_choice = typer.prompt(self.choices, type=str)
         return user_choice
 
-    def choose_actions(self, user_choice) -> Dict:
+    def choose_actions(self, user_choice, params: Union[str, None]) -> Dict:
         """keep allow choosing action until exit, also if input is wrong"""
-        keep_choose = True
-        while keep_choose:
-            # user_choice = self.get_user_choice()
-            choice_to_action = {
-                "eat": self.eat,
-                "play": self.play,
-                "sleep": self.sleep,
-                "bite": self.bite_someone,
-                "owner": self.change_owner,
-            }
-            if user_choice == "exit":
-                keep_choose = self.exit_loop()
-                print(f"Params average is: {self.final_calculate()}")
-                print("goodbye :)")
-            else:
+        choice_to_action = {
+            "eat": self.eat,
+            "play": self.play,
+            "sleep": self.sleep,
+            "bite": self.bite_someone,
+            "owner": self.change_owner,
+        }
+        if user_choice == "exit":
+            print(f"Params average is: {self.final_calculate()}")
+            print("goodbye :)")
+        else:
+            if params is None:
                 choice_to_action[user_choice]()
-            return self.print_params()
+            else:
+                choice_to_action[user_choice](params)
+        return self.print_params()
 
     def final_calculate(self) -> float:
         """calculate the average of all the parameters of the animal"""
@@ -186,17 +175,15 @@ class Animal:
 
 
 def name_confirm(value):
+    """check that the name is ok"""
     if len(value) > 0:
         if value.isalpha() and value.islower():
             return value
     raise Exception("Name should contains only lowercase")
 
 
-def get_object(object_id):
-    return ctypes.cast(object_id, ctypes.py_object).value
-
-
 def kind_confirm(kind):
+    """make sure the input kind exists"""
     if kind in ANIMAL_TYPES:
         return kind
     raise Exception("The type of the animal is wrong")
@@ -213,4 +200,3 @@ def create_animal(animal_type: str, animal_name: str):
 
 if __name__ == "__main__":
     create_animal("cat", "da")
-

@@ -1,23 +1,29 @@
 from fastapi import FastAPI, status
 from fastapi.responses import HTMLResponse, RedirectResponse
-import ctypes
-
-import animal_function
 import design_web
+import animal_function
+
 app = FastAPI()
 my_web = design_web.WebAnimal()
+my_url = "http://127.0.0.1:8000/"
+
 
 @app.get("/")
 def read_root():
+    """display the home screen"""
     return HTMLResponse(content=my_web.home_screen(), status_code=200)
 
 
 @app.get("/status/{animal_kind}/{animal_name}")
 def get_buttons_screen(animal_kind, animal_name):
-    return HTMLResponse(content=my_web.show_bottoms(animal_kind, animal_name), status_code=200)
+    """display a status screen of specific animal"""
+    con = my_web.get_status_screen(animal_kind, animal_name)
+    return HTMLResponse(content=con, status_code=200)
+
 
 @app.get("/{action}")
-def update_action(action, animal_kind, animal_name):
-    my_web.do_action(action, animal_kind, animal_name)
-    return RedirectResponse(f"http://127.0.0.1:8000/status/{animal_kind}/{animal_name}", status_code=status.HTTP_303_SEE_OTHER)
-
+def update_action(action, animal_kind, animal_name, params=None):
+    """update animal properties by the specific action"""
+    my_web.do_action(action, animal_kind, animal_name, params)
+    redirect = f"{my_url}status/{animal_kind}/{animal_name}"
+    return RedirectResponse(redirect, status_code=status.HTTP_303_SEE_OTHER)
