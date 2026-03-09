@@ -54,24 +54,24 @@ class WebAnimal:
 
     def new_animal(self, animal_kind, animal_name):
         """create new object of an animal"""
-        try:
-            animal = animal_function.create_animal(animal_kind, animal_name)
-            text = (
-                f"<h1 style='text-align:center'>"
-                f"A {animal_kind} name {animal_name} is exist"
-                f"</h1>"
-            )
-            if animal_kind + "_" + animal_name not in self.animal_objects:
+        if animal_kind + "_" + animal_name not in self.animal_objects:
+            try:
+                animal = animal_function.create_animal(animal_kind, animal_name)
                 self.animal_objects[animal_kind + "_" + animal_name] = animal
                 text = (
                     f"<h1 style='text-align:center'>"
                     f"A {animal_kind} name {animal_name} was created"
                     f"</h1>"
                 )
-            return text
-        except Exception:
-            text = "<h1 style='text-align:center'>Error: wrong parameters</h1>"
-            return text
+            except ValueError:
+                text = "<h1 style='text-align:center'>Error: wrong parameters</h1>"
+        else:
+            text = (
+                f"<h1 style='text-align:center'>"
+                f"A {animal_kind} name {animal_name} is exist"
+                f"</h1>"
+            )
+        return text
 
     def show_buttons(self, animal_prop):
         """create the action buttons"""
@@ -87,13 +87,11 @@ class WebAnimal:
         owner_html = f"""
             Owner Name: <input type="text" id="owner_name" value="">
             <button onclick="myFunction()">change owner</button>
-            <h3 style='text-align:center'><a id="aLink"></a></h3>
             <script>
             function myFunction() {{
               var owner = document.getElementById("owner_name").value;
               let link = document.getElementById('aLink');
-              link.href = "{self.url}" + "owner?{animal_prop}&params=" + owner;
-              link.click();
+              window.location.href = "/owner?{animal_prop}&params=" + owner;
             }}
             </script>
             """

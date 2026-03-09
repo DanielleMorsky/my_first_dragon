@@ -16,6 +16,7 @@ class Animal:
     SLEEP_ENERGY = 10
     SLEEP_HUNGER = 5
     OWNER_HAPPINESS = -10
+    BITE_ENERGY = -10
     DEFAULT = 0
 
     PARAM_MAX = 100
@@ -36,9 +37,9 @@ class Animal:
         self.kind = kind
         self.name = name
         self.owner = owner
-        self.hunger = [0]
-        self.happiness = [0]
-        self.energy = [0]
+        self.hunger = 0
+        self.happiness = 0
+        self.energy = 0
         self.points = 0
         self.history_path = "history.txt"
         self.last_action = ""
@@ -46,28 +47,29 @@ class Animal:
 
     def eat(self) -> None:
         """update animal values if it eats"""
-        self.energy[0] += self.EAT_ENERGY
-        self.hunger[0] += self.EAT_HUNGER
+        self.energy += self.EAT_ENERGY
+        self.hunger += self.EAT_HUNGER
         self.keep_params_in_range()
         self.default_actions("eat")
 
     def play(self) -> None:
         """update animal values if it plays"""
-        self.energy[0] += self.PLAY_ENERGY
-        self.hunger[0] += self.PLAY_HUNGER
-        self.happiness[0] += self.PLAY_HAPPINESS
+        self.energy += self.PLAY_ENERGY
+        self.hunger += self.PLAY_HUNGER
+        self.happiness += self.PLAY_HAPPINESS
         self.keep_params_in_range()
         self.default_actions("play")
 
     def sleep(self) -> None:
         """update animal values if it sleeps"""
-        self.energy[0] += self.SLEEP_ENERGY
-        self.hunger[0] += self.SLEEP_HUNGER
+        self.energy += self.SLEEP_ENERGY
+        self.hunger += self.SLEEP_HUNGER
         self.keep_params_in_range()
         self.default_actions("sleep")
 
-    def bite_someone(self) -> None:
+    def bite(self) -> None:
         """delete points to the animal if it bites"""
+        self.energy += self.BITE_ENERGY
         self.default_actions("bite")
 
     def check_owner_name(self, owner):
@@ -81,7 +83,7 @@ class Animal:
         """change the owner of the animal"""
         if self.check_owner_name(owner):
             self.owner = owner
-            self.happiness[0] = self.OWNER_HAPPINESS
+            self.happiness += self.OWNER_HAPPINESS
             self.keep_params_in_range()
             self.default_actions("change_owner")
 
@@ -119,10 +121,10 @@ class Animal:
         """make sure the values are between 0-100"""
         params = [self.energy, self.hunger, self.happiness]
         for i in range(len(params)):
-            if params[i][0] > self.PARAM_MAX:
-                params[i][0] = self.PARAM_MAX
-            elif params[i][0] < self.PARAM_MIN:
-                params[i][0] = self.PARAM_MIN
+            if params[i] > self.PARAM_MAX:
+                params[i] -= params[i] - self.PARAM_MAX
+            elif params[i] < self.PARAM_MIN:
+                params[i] += self.PARAM_MIN - params[i]
 
     def exit_loop(self) -> bool:
         """return false to exit the loop"""
@@ -131,9 +133,9 @@ class Animal:
     def print_params(self) -> Dict:
         """print the parameters of the animal"""
         return {
-            "happiness": self.happiness[0],
-            "hunger": self.hunger[0],
-            "energy": self.energy[0],
+            "happiness": self.happiness,
+            "hunger": self.hunger,
+            "energy": self.energy,
             "last_action": self.last_action,
             "animal_stat": self.final_calculate(),
             "total_points": self.points,
@@ -154,7 +156,7 @@ class Animal:
             "eat": self.eat,
             "play": self.play,
             "sleep": self.sleep,
-            "bite": self.bite_someone,
+            "bite": self.bite,
             "owner": self.change_owner,
         }
         if user_choice == "exit":
@@ -169,7 +171,7 @@ class Animal:
 
     def final_calculate(self) -> float:
         """calculate the average of all the parameters of the animal"""
-        params = [self.happiness[0], self.energy[0], self.hunger[0]]
+        params = [self.happiness, self.energy, self.hunger]
         return sum(params) / len(params)
 
 
@@ -178,14 +180,14 @@ def name_confirm(value):
     if len(value) > 0:
         if value.isalpha() and value.islower():
             return value
-    raise Exception("Name should contains only lowercase")
+    raise ValueError("Name should contain only lowercase")
 
 
 def kind_confirm(kind):
     """make sure the input kind exists"""
     if kind in ANIMAL_TYPES:
         return kind
-    raise Exception("The type of the animal is wrong")
+    raise ValueError("The type of the animal is wrong")
 
 
 def create_animal(animal_type: str, animal_name: str):

@@ -25,7 +25,6 @@ def get_buttons_screen(animal_kind, animal_name):
 @app.get("/{action}")
 def update_action(action, animal_kind, animal_name, params=None):
     """update animal properties by the specific action"""
-    con = my_web.do_action(action, animal_kind, animal_name, params)
-    # redirect = f"window.location.href=/status/{animal_kind}/{animal_name}"
-    # return RedirectResponse(redirect, status_code=status.HTTP_303_SEE_OTHER)
-    return HTMLResponse(content=con, status_code=200)
+    my_web.do_action(action, animal_kind, animal_name, params)
+    redirect = f"/status/{animal_kind}/{animal_name}"
+    return RedirectResponse(redirect, status_code=status.HTTP_303_SEE_OTHER)
