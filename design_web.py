@@ -2,10 +2,13 @@ import animal_function
 
 
 class WebAnimal:
+    IP = "127.0.0.1"
+    PORT = 8000
+
     def __init__(self):
         """define class variables"""
         self.animal_objects = {}
-        self.url = "http://127.0.0.1:8000/"
+        self.url = f"http://{self.IP}:{self.PORT}/"
 
     def full_html(self, specific_site_content):
         """define basic structure of html page"""
@@ -28,7 +31,7 @@ class WebAnimal:
         return html_base_content
 
     def home_screen(self):
-        """create the home screen"""
+        # """create the home screen"""
         text = f"""
         <h2 style='text-align:center'>Welcome to animal viewing :)</h2>
         <br>
@@ -44,7 +47,7 @@ class WebAnimal:
               var kind = document.getElementById("kind_text").value;
               var name = document.getElementById("name_text").value;
               let link = document.getElementById('aLink');
-              link.href = "{self.url}" + "status/" + kind + "/" + name;
+              link.href = "{self.url}status/" + kind + "/" + name;
               link.click();
             }}
             </script>

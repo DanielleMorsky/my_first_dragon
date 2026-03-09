@@ -1,4 +1,3 @@
-import ctypes
 from typing import Any, Dict, Union
 import logging
 import typer
@@ -32,7 +31,7 @@ class Animal:
         "\nyour choice"
     )
 
-    def __init__(self, kind: str, name: str, owner="Danielle") -> None:
+    def __init__(self, kind: str, name: str, owner="danielle") -> None:
         """define the class variables"""
         self.kind = kind
         self.name = name

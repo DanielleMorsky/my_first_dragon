@@ -1,11 +1,12 @@
 from fastapi import FastAPI, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 import design_web
-import animal_function
 
-app = FastAPI()
+app = FastAPI().host("10.53.128.30:8080")
 my_web = design_web.WebAnimal()
-my_url = "http://127.0.0.1:8000/"
+IP = "127.0.0.1"
+PORT = 8000
+my_url = f"http://{IP}:{PORT}/"
 
 
 @app.get("/")
