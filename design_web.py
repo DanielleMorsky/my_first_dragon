@@ -32,7 +32,7 @@ class WebAnimal:
 
     def home_screen(self):
         # """create the home screen"""
-        text = f"""
+        text = """
         <h2 style='text-align:center'>Welcome to animal viewing :)</h2>
         <br>
         <div style="text-align:center">
@@ -41,15 +41,12 @@ class WebAnimal:
             Animal Name: <input type="text" id="name_text" value="">
             <br><br>
             <button onclick="myFunction()">animal status page</button>
-            <h3 style='text-align:center'><a id="aLink"></a></h3>
             <script>
-            function myFunction(){{
-              var kind = document.getElementById("kind_text").value;
-              var name = document.getElementById("name_text").value;
-              let link = document.getElementById('aLink');
-              link.href = "{self.url}status/" + kind + "/" + name;
-              link.click();
-            }}
+            function myFunction(){
+                var kind = document.getElementById("kind_text").value;
+                var name = document.getElementById("name_text").value;
+                window.location.href = "/status/" + kind + "/" + name;
+            }
             </script>
         </div>
         """
@@ -78,28 +75,11 @@ class WebAnimal:
 
     def show_buttons(self, animal_prop):
         """create the action buttons"""
-        eat_button = f"""
-                    <a href="{self.url}eat?{animal_prop}">
-                    <button>the animal eats</button></a>
-                    """
-        sleep_button = f"""
-                    <a href="{self.url}sleep?{animal_prop}">
-                    <button>the animal sleeps</button></a>
-                    """
-        play_button = f"""
-                    <a href="{self.url}play?{animal_prop}">
-                    <button>the animal plays</button></a>
-                    """
-        bite_button = f"""
-                    <a href="{self.url}bite?{animal_prop}">
-                    <button>the animal bites</button></a>
-                    """
-        full_text = f"""
-                    {eat_button}
-                    {sleep_button}
-                    {play_button}
-                    {bite_button}
-                    """
+        eat_button = f'<button onclick=window.location.href="/eat?{animal_prop}">the animal eats</button>'
+        sleep_button = f'<button onclick=window.location.href="/sleep?{animal_prop}">the animal sleeps</button>'
+        play_button = f'<button onclick=window.location.href="/play?{animal_prop}">the animal plays</button>'
+        bite_button = f'<button onclick=window.location.href="/bite?{animal_prop}">the animal bites</button>'
+        full_text = f"{eat_button}{sleep_button}{play_button}{bite_button}"
         return full_text
 
     def owner_button(self, animal_prop):
