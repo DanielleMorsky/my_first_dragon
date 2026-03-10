@@ -37,22 +37,16 @@ class Animal:
         self.points = 0
         self.history_path = kind + "_" + name + ".txt"
         self.last_action = ""
-        self.logger = logging.getLogger(self.kind + "_" + self.name)
+        self.logger:Any = None
 
-    def __enter__(self):
+    def append_history(self):
         """create a logger that use for update history file"""
-        logging.basicConfig(
-            filename=self.history_path,
-            format="%(asctime)s %(levelname)s: %(message)s",
-            filemode="a",
-        )
-        print(self.history_path)
+        self.logger = logging.getLogger(self.kind + "_" + self.name)
+        fh = logging.FileHandler(self.history_path)
+        log_format = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
+        fh.setFormatter(log_format)
         self.logger.setLevel(logging.DEBUG)
-        print(self.logger)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        self.logger.addHandler(fh)
 
     def eat(self) -> None:
         """update animal values if it eats"""
@@ -114,8 +108,10 @@ class Animal:
             if self.points < 0:
                 self.points = 0
             text = actions_values[source_action]["msg"]
-            self.logger.info(text)
             self.last_action = source_action
+            if self.logger is None:
+                self.append_history()
+            self.logger.info(text)
 
     def keep_params_in_range(self) -> None:
         """make sure the values are between 0-100"""
@@ -154,14 +150,10 @@ class Animal:
             "bite": self.bite,
             "owner": self.change_owner,
         }
-        if user_choice == "exit":
-            print(f"Params average is: {self.final_calculate()}")
-            print("goodbye :)")
+        if params is None:
+            choice_to_action[user_choice]()
         else:
-            if params is None:
-                choice_to_action[user_choice]()
-            else:
-                choice_to_action[user_choice](params)
+            choice_to_action[user_choice](params)
         return self.print_params()
 
     def final_calculate(self) -> float:
@@ -189,9 +181,9 @@ def create_animal(animal_type: str, animal_name: str):
     """create and define a new animal"""
     name_confirm(animal_name)
     kind_confirm(animal_type)
-    # my_animal.append_history()
-    with Animal(animal_type, animal_name) as my_animal:
-        return my_animal
+    my_animal = Animal(animal_type, animal_name)
+    my_animal.append_history()
+    return my_animal
 
 
 if __name__ == "__main__":

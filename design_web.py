@@ -64,11 +64,11 @@ class WebAnimal:
                     f"</h1>"
                 )
             except ValueError:
-                text = "<h1 style='text-align:center'>Error: wrong parameters</h1>"
+                raise ValueError
         else:
             text = (
                 f"<h1 style='text-align:center'>"
-                f"A {animal_kind} name {animal_name} is exist"
+                f"A {animal_kind} named {animal_name} already exists"
                 f"</h1>"
             )
         return text
@@ -117,9 +117,10 @@ class WebAnimal:
 
     def get_status_screen(self, animal_kind, animal_name):
         """combine all the functions of this page and return the total page"""
-        animal_text = self.new_animal(animal_kind, animal_name)
-        if "Error" in animal_text:
-            return self.full_html(animal_text)
+        try:
+            animal_text = self.new_animal(animal_kind, animal_name)
+        except ValueError:
+            return self.full_html("<h1 style='text-align:center'>Error: wrong parameters</h1>")
         animal_prop = f"animal_kind={animal_kind}&animal_name={animal_name}"
         animal_obj = self.animal_objects[animal_kind + "_" + animal_name]
         params_values = animal_function.Animal.print_params(animal_obj)
