@@ -1,0 +1,512 @@
+2026-03-03 17:39:41,494 INFO: ~~~~~New Run~~~~~
+2026-03-03 17:43:24,006 INFO: ~~~~~New Run~~~~~
+2026-03-03 17:46:35,697 INFO: ~~~~~New Run~~~~~
+2026-03-03 17:53:48,360 INFO: ~~~~~New Run~~~~~
+2026-03-03 17:57:29,468 INFO: ~~~~~New Run~~~~~
+2026-03-03 18:15:57,445 INFO: ~~~~~New Run~~~~~
+2026-03-03 18:16:00,208 INFO: danielle sleeps
+2026-03-03 18:18:14,556 INFO: ~~~~~New Run~~~~~
+2026-03-03 18:18:18,560 INFO: dog danielle sleeps
+2026-03-03 18:18:22,303 INFO: dog danielle sleeps
+2026-03-03 18:21:29,222 INFO: ~~~~~New Run~~~~~
+2026-03-03 18:21:32,168 INFO: dog danielle sleeps
+2026-03-03 18:21:34,352 INFO: dog danielle eats
+2026-03-03 18:22:53,016 INFO: ~~~~~New Run~~~~~
+2026-03-03 18:22:57,541 INFO: dog danielle bites
+2026-03-03 18:23:05,410 INFO: dog danielle eats
+2026-03-03 18:23:08,389 INFO: dog danielle plays
+2026-03-03 18:23:20,827 INFO: dog danielle bites
+2026-03-04 18:00:28,520 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:02:44,864 INFO: Shutting down
+2026-03-04 18:02:44,970 INFO: Waiting for application shutdown.
+2026-03-04 18:02:44,970 INFO: Application shutdown complete.
+2026-03-04 18:02:44,970 INFO: Finished server process [6876]
+2026-03-04 18:06:11,560 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:06:11,560 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 14, in read_item
+    return HTMLResponse(content=design_web.new_animal(animal_kind, animal_name), status_code=200)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 44, in __init__
+    self.body = self.render(content)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 52, in render
+    return content.encode(self.charset)  # type: ignore
+AttributeError: 'Animal' object has no attribute 'encode'
+2026-03-04 18:06:23,463 INFO: Shutting down
+2026-03-04 18:06:23,573 INFO: Waiting for application shutdown.
+2026-03-04 18:06:23,573 INFO: Application shutdown complete.
+2026-03-04 18:06:23,573 INFO: Finished server process [21856]
+2026-03-04 18:06:26,527 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:06:26,527 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 14, in read_item
+    return HTMLResponse(content=design_web.new_animal(animal_kind, animal_name), status_code=200)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 44, in __init__
+    self.body = self.render(content)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 52, in render
+    return content.encode(self.charset)  # type: ignore
+AttributeError: 'Animal' object has no attribute 'encode'
+2026-03-04 18:06:27,557 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:06:27,557 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 14, in read_item
+    return HTMLResponse(content=design_web.new_animal(animal_kind, animal_name), status_code=200)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 44, in __init__
+    self.body = self.render(content)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 52, in render
+    return content.encode(self.charset)  # type: ignore
+AttributeError: 'Animal' object has no attribute 'encode'
+2026-03-04 18:06:53,128 INFO: Shutting down
+2026-03-04 18:06:53,238 INFO: Waiting for application shutdown.
+2026-03-04 18:06:53,238 INFO: Application shutdown complete.
+2026-03-04 18:06:53,238 INFO: Finished server process [1944]
+2026-03-04 18:06:55,361 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:06:55,361 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 14, in read_item
+    return HTMLResponse(content=design_web.new_animal(animal_kind, animal_name), status_code=200)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 44, in __init__
+    self.body = self.render(content)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 52, in render
+    return content.encode(self.charset)  # type: ignore
+AttributeError: 'Animal' object has no attribute 'encode'
+2026-03-04 18:06:56,172 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:06:56,172 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 14, in read_item
+    return HTMLResponse(content=design_web.new_animal(animal_kind, animal_name), status_code=200)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 44, in __init__
+    self.body = self.render(content)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\responses.py", line 52, in render
+    return content.encode(self.charset)  # type: ignore
+AttributeError: 'Animal' object has no attribute 'encode'
+2026-03-04 18:07:31,557 INFO: Shutting down
+2026-03-04 18:07:31,667 INFO: Waiting for application shutdown.
+2026-03-04 18:07:31,667 INFO: Application shutdown complete.
+2026-03-04 18:07:31,667 INFO: Finished server process [14084]
+2026-03-04 18:07:33,678 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:07:50,807 INFO: Shutting down
+2026-03-04 18:07:50,916 INFO: Waiting for application shutdown.
+2026-03-04 18:07:50,916 INFO: Application shutdown complete.
+2026-03-04 18:07:50,916 INFO: Finished server process [19596]
+2026-03-04 18:07:52,911 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:07:54,006 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:08:01,196 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:23:46,402 INFO: Shutting down
+2026-03-04 18:23:46,513 INFO: Waiting for application shutdown.
+2026-03-04 18:23:46,513 INFO: Application shutdown complete.
+2026-03-04 18:23:46,513 INFO: Finished server process [15620]
+2026-03-04 18:40:56,963 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:41:28,486 INFO: Shutting down
+2026-03-04 18:41:28,596 INFO: Waiting for application shutdown.
+2026-03-04 18:41:28,596 INFO: Application shutdown complete.
+2026-03-04 18:41:28,596 INFO: Finished server process [20584]
+2026-03-04 18:41:33,718 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:42:29,315 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:43:29,112 INFO: Shutting down
+2026-03-04 18:43:29,221 INFO: Waiting for application shutdown.
+2026-03-04 18:43:29,221 INFO: Application shutdown complete.
+2026-03-04 18:43:29,221 INFO: Finished server process [21568]
+2026-03-04 18:43:30,957 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:43:35,659 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 19, in update_action
+    main.Animal.eat(animal)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\main.py", line 56, in eat
+    self.energy[0] += self.EAT_ENERGY
+AttributeError: 'str' object has no attribute 'energy'
+2026-03-04 18:43:48,724 INFO: Shutting down
+2026-03-04 18:43:48,827 INFO: Waiting for application shutdown.
+2026-03-04 18:43:48,827 INFO: Application shutdown complete.
+2026-03-04 18:43:48,827 INFO: Finished server process [22572]
+2026-03-04 18:44:11,362 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:44:14,888 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 19, in update_action
+    main.Animal.eat(animal)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\main.py", line 56, in eat
+    self.energy[0] += self.EAT_ENERGY
+AttributeError: 'str' object has no attribute 'energy'
+2026-03-04 18:44:47,258 INFO: Shutting down
+2026-03-04 18:44:47,367 INFO: Waiting for application shutdown.
+2026-03-04 18:44:47,367 INFO: Application shutdown complete.
+2026-03-04 18:44:47,367 INFO: Finished server process [22780]
+2026-03-04 18:44:53,960 INFO: ~~~~~New Run~~~~~
+2026-03-04 18:44:55,493 ERROR: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\applications.py", line 1139, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 120, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 106, in app
+    response = await f(request)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 430, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\fastapi\routing.py", line 318, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 2364, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\venv\lib\site-packages\anyio\_backends\_asyncio.py", line 864, in run
+    result = context.run(func, *args)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\fast_api.py", line 19, in update_action
+    main.Animal.eat(animal)
+  File "C:\Users\Mamriot_User\Desktop\bis_hibur\my_first_dragon\main.py", line 56, in eat
+    self.energy[0] += self.EAT_ENERGY
+AttributeError: 'str' object has no attribute 'energy'
+2026-03-04 18:52:26,306 INFO: Shutting down
+2026-03-04 18:52:26,417 INFO: Waiting for application shutdown.
+2026-03-04 18:52:26,417 INFO: Application shutdown complete.
+2026-03-04 18:52:26,417 INFO: Finished server process [13596]
