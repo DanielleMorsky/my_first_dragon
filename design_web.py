@@ -111,7 +111,7 @@ class WebAnimal:
             <h2>Animal Total Points -- {params_values["total_points"]}</h2>
             <h2>Animal Owner -- {params_values["owner"]}</h2>
             <br>
-            <h3><a href="{self.url}">Press to get animal status page</a></h3>
+            <h3><a href="/">Press to get animal status page</a></h3>
             """
         return text_status
 

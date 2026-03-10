@@ -21,16 +21,10 @@ class Animal:
 
     PARAM_MAX = 100
     PARAM_MIN = 0
-    choices = (
-        "Choose one of the following options:"
-        "\n~\teat"
-        "\n~\tplay"
-        "\n~\tsleep"
-        "\n~\tbite"
-        "\n~\towner"
-        "\n~\texit"
-        "\nyour choice"
-    )
+
+    ENERGY_IDX = 0
+    HUNGER_IDX = 1
+    HAPPINESS_IDX = 2
 
     def __init__(self, kind: str, name: str, owner="danielle") -> None:
         """define the class variables"""
@@ -38,12 +32,27 @@ class Animal:
         self.name = name
         self.owner = owner
         self.hunger = 0
-        self.happiness = 0
-        self.energy = 0
+        self.happiness = 20
+        self.energy = 10
         self.points = 0
-        self.history_path = "history.txt"
+        self.history_path = kind + "_" + name + ".txt"
         self.last_action = ""
-        self.logger: Any = None
+        self.logger = logging.getLogger(self.kind + "_" + self.name)
+
+    def __enter__(self):
+        """create a logger that use for update history file"""
+        logging.basicConfig(
+            filename=self.history_path,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            filemode="a",
+        )
+        print(self.history_path)
+        self.logger.setLevel(logging.DEBUG)
+        print(self.logger)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
 
     def eat(self) -> None:
         """update animal values if it eats"""
@@ -70,6 +79,7 @@ class Animal:
     def bite(self) -> None:
         """delete points to the animal if it bites"""
         self.energy += self.BITE_ENERGY
+        self.keep_params_in_range()
         self.default_actions("bite")
 
     def check_owner_name(self, owner):
@@ -107,16 +117,6 @@ class Animal:
             self.logger.info(text)
             self.last_action = source_action
 
-    def append_history(self):
-        """create a logger that use for update history file"""
-        logging.basicConfig(
-            filename=self.history_path,
-            format="%(asctime)s %(levelname)s: %(message)s",
-            filemode="a",
-        )
-        self.logger = logging.getLogger()
-        self.logger.setLevel(logging.DEBUG)
-
     def keep_params_in_range(self) -> None:
         """make sure the values are between 0-100"""
         params = [self.energy, self.hunger, self.happiness]
@@ -125,6 +125,9 @@ class Animal:
                 params[i] -= params[i] - self.PARAM_MAX
             elif params[i] < self.PARAM_MIN:
                 params[i] += self.PARAM_MIN - params[i]
+        self.energy = params[self.ENERGY_IDX]
+        self.hunger = params[self.HUNGER_IDX]
+        self.happiness = params[self.HAPPINESS_IDX]
 
     def exit_loop(self) -> bool:
         """return false to exit the loop"""
@@ -141,14 +144,6 @@ class Animal:
             "total_points": self.points,
             "owner": self.owner,
         }
-
-    def get_user_choice(self) -> str:
-        """check that the user entered an action from the options"""
-        actions = ["eat", "play", "sleep", "bite", "owner", "exit"]
-        user_choice = ""
-        while user_choice not in actions:
-            user_choice = typer.prompt(self.choices, type=str)
-        return user_choice
 
     def choose_actions(self, user_choice, params: Union[str, None]) -> Dict:
         """keep allow choosing action until exit, also if input is wrong"""
@@ -194,9 +189,9 @@ def create_animal(animal_type: str, animal_name: str):
     """create and define a new animal"""
     name_confirm(animal_name)
     kind_confirm(animal_type)
-    my_animal = Animal(animal_type, animal_name)
-    my_animal.append_history()
-    return my_animal
+    # my_animal.append_history()
+    with Animal(animal_type, animal_name) as my_animal:
+        return my_animal
 
 
 if __name__ == "__main__":
